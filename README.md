@@ -138,3 +138,30 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - [HL7 FHIR](https://www.hl7.org/fhir/) - FHIR specification
 - [HAPI FHIR](https://hapifhir.io/) - Reference server used for testing 
+
+## Testing
+
+This project includes both unit and end-to-end (E2E) tests for FHIR resources, especially the Patient resource.
+
+- **Unit tests** are located in the `tests/` directory (e.g., `patient_unit_test.go`). These cover JSON marshaling/unmarshaling, required fields, and edge cases for Patient.
+- **E2E tests** (e.g., `e2e_patient_test.go`) interact with a live HAPI FHIR server (https://hapi.fhir.org/baseR4) to test create, read, search, and delete operations for Patient resources.
+
+### Running Tests
+
+To run all tests in the `tests` directory:
+
+```bash
+go test ./tests/... -v
+```
+
+To skip E2E tests (for example, in CI), set the environment variable:
+
+```bash
+SKIP_E2E=1 go test ./tests/... -v
+```
+
+You can also run all tests (including any in the main codebase) with:
+
+```bash
+go test ./... ./tests/... -v
+``` 

@@ -2,6 +2,7 @@ package search
 
 import (
 	"net/url"
+	"strconv"
 	"strings"
 )
 
@@ -38,7 +39,7 @@ func (b *Builder) Sort(param string, desc bool) *Builder {
 
 // Count sets the _count parameter
 func (b *Builder) Count(count int) *Builder {
-	b.params.Set("_count", string(count))
+	b.params.Set("_count", strconv.Itoa(count))
 	return b
 }
 
